@@ -1,75 +1,73 @@
-# React + TypeScript + Vite
+# PJEstates_TypeScript
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A real estate website recreated using **React** and **TypeScript**, based on my previous project originally built with HTML, CSS, and vanilla JavaScript.
 
-Currently, two official plugins are available:
+## About the Project
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+PJEstates is a personal project focused on building a real estate website where users can explore and browse property listings.
 
-## React Compiler
+The original version was developed using HTML, CSS, and vanilla JavaScript. This project is a recreation of that website using modern frontend technologies, particularly React and TypeScript.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The main goal of this recreation is to improve my understanding of component-based development, TypeScript, state management, and building scalable frontend applications.
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **React** – Component-based UI development
+- **TypeScript** – Static typing and improved code maintainability
+- **Vite** – Development server and build tool
+- **CSS** – Styling and responsive layouts
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Project Goals
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- Recreate the original PJEstates website using React and TypeScript.
+- Practice building reusable React components.
+- Improve TypeScript skills through practical application.
+- Implement interactive features using React hooks and state management.
+- Write cleaner, more maintainable, and scalable code.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Getting Started
 
-```
+### Prerequisites
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+- Node.js
+- npm
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Installation
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+1. Clone the repository:
 
-```
+   ```bash
+   git clone https://github.com/BananaCode2023/PJEstates_TypeScript.git
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd PJEstates_TypeScript
+   ```
+
+3. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+4. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+5. Open the local URL provided by Vite in your browser.
+
+## Project Status
+
+Currently under development.
+
+This project is an ongoing learning experience as I transition from vanilla JavaScript to React and TypeScript.
+
+---
+
+**Author:** BananaCode2023
+
+**Repository:** [PJEstates_TypeScript](https://github.com/BananaCode2023/PJEstates_TypeScript)
