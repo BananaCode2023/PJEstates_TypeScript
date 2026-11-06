@@ -12,10 +12,6 @@ function Header () {
 
     const [isHeaderModalOpen, setIsHeaderModalOpen] = useState(false)
 
-    const openModal = () => {
-        
-    }
-
     return(
         <>
             <header>
