@@ -1,0 +1,63 @@
+/* Brand colors */
+:root {
+  --color-primary: #132720; /* Deep forest green */
+  --color-primary-dark: #0e211b; /* Footer/background green */
+  --color-accent: #9c684d; /* Muted copper */
+  --color-accent-light: #c6aa91; /* Soft copper/beige */
+
+  /* Backgrounds */
+  --color-background: #f5f4f0; /* Main page background */
+  --color-surface: #f8f7f3; /* Cards and header */
+  --color-surface-muted: #e9e7e0; /* Hero background */
+  --color-section: #deddd7; /* Featured properties section */
+  --color-empty: #ebe9e3; /* Empty-results panel */
+
+  /* Text */
+  --color-text: #132720; /* Primary text */
+  --color-text-secondary: #56635e;
+  --color-text-muted: #7a8580;
+  --color-text-subtle: #89928e;
+  --color-text-on-dark: #d7dfdc;
+  --color-text-on-dark-muted: #abb5b1;
+
+  /* Status colors */
+  --color-status-sale: #132720;
+  --color-status-pending: #8a604b;
+  --color-status-open-house: #a37b53;
+
+  /* Utility colors */
+  --white: #ffffff;
+  --color-image-placeholder: #c9c4b9;
+}
+
+/* Transparent colors*/
+:root {
+  --color-border: rgba(19, 39, 32, 0.1);
+  --color-border-medium: rgba(19, 39, 32, 0.18);
+  --color-border-strong: rgba(19, 39, 32, 0.25);
+
+  --color-surface-glass: rgba(248, 247, 243, 0.91);
+  --color-card-glass: rgba(248, 247, 243, 0.91);
+
+  --color-white-border: rgba(255, 255, 255, 0.44);
+  --color-white-subtle: rgba(255, 255, 255, 0.08);
+}
+
+body {
+  font-family: "Manrope", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Instrument Serif", serif;
+}
+
+h1 em,
+h2 em {
+  font-family: "Instrument Serif", serif;
+  font-style: italic;
+  font-weight: 400;
+}
