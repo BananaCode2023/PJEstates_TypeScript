@@ -1,12 +1,14 @@
-import Footer from "../Footer/Footer"
-import Header from "../Header/Header"
+import type { Property } from "../../modules/propertyType"
+import Hero from "./HeroSection/Hero"
 
-function Homepage () {
+
+function Homepage ({propertiesData}:{propertiesData: Property[]}) {
+
     return(
         <>
-            <Header/>
-                <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-            <Footer/>
+            <title>PJ Estates</title>
+
+            <Hero propertiesData={propertiesData}/>
         </>
     )
 }

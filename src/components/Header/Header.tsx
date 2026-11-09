@@ -16,7 +16,7 @@ function Header () {
         <>
             <header>
                 <div className={styles.headerContainer}>
-                    <div className={styles.logo}>
+                    <NavLink to='/' className={styles.logo}>
                         <div className={styles.icon}>
                             <p className={styles.iconText}>PJ</p>
                         </div>
@@ -24,7 +24,7 @@ function Header () {
                             <p>Estates</p>
                             <small>Sacramento</small>
                         </div>
-                    </div>
+                    </NavLink>
 
                     <div className={styles.headerCol}>
                         <div className={styles.headerInput}>
