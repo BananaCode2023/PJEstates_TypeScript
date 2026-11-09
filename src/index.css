@@ -55,9 +55,48 @@ h3 {
   font-family: "Instrument Serif", serif;
 }
 
+h1{
+  font-size: 78px;
+  line-height: 74.9px;
+  letter-spacing: -2.73px;
+  font-weight: 400;
+  margin-block: 0;
+  color: var(--color-primary);
+}
+
+h2{
+  font-size: 55px;
+  line-height: 56.1px;
+  letter-spacing: -1.38px;
+  font-weight: 400;
+  margin-block: 0;
+  color: var(--color-primary);
+}
+
+h3{
+  font-size: 25px;
+  letter-spacing: -0.25px;
+  font-weight: 400;
+  margin-block: 0;
+  color: var(--color-primary);
+}
+
 h1 em,
 h2 em {
   font-family: "Instrument Serif", serif;
   font-style: italic;
   font-weight: 400;
+}
+
+section{
+  padding-block: 144px;
+}
+
+.pre-title{
+    font-size: 9px;
+    font-weight: 600;
+    line-height: 13.5px;
+    letter-spacing: 2.7px;
+    color: var(--color-accent);
+    text-transform: uppercase;
 }

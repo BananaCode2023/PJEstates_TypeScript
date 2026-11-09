@@ -7,16 +7,18 @@
     justify-content: center;
     align-items: center;
     gap: 11px;
-    padding-inline: 20px;
-    padding-block: 0;
-    font-size: 12px;
-    line-height: 18px;
-    letter-spacing: 0;
-    font-weight: 400;
+    padding-inline: 24px;
+    padding-block: 4px;
+    font-size: 10px;
+    line-height: 15px;
+    letter-spacing: 1.2px;
+    font-weight: 600;
     transition: 0.2s;
+    margin-right: auto;
+    text-transform: uppercase;
 
     svg{
-        font-size: 14px;
+        font-size: 16px;
     }
 
     &:hover{
