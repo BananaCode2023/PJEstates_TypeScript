@@ -57,8 +57,8 @@ h3 {
 
 h1{
   font-size: 4.875rem;
-  line-height: 74.9px;
-  letter-spacing: -2.73px;
+  line-height: 0.96;
+  letter-spacing: -0.035em;
   font-weight: 400;
   margin-block: 0;
   color: var(--color-primary);
@@ -68,18 +68,18 @@ h1{
   }
 }
 
-h2{
-  font-size: 55px;
-  line-height: 56.1px;
-  letter-spacing: -1.38px;
+h2 {
+  font-size: clamp(2.25rem, 4.5vw, 3.4375rem);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
   font-weight: 400;
   margin-block: 0;
   color: var(--color-primary);
 }
 
-h3{
-  font-size: 25px;
-  letter-spacing: -0.25px;
+h3 {
+  font-size: clamp(1.25rem, 2.2vw, 1.5625rem);
+  letter-spacing: -0.01em;
   font-weight: 400;
   margin-block: 0;
   color: var(--color-primary);
@@ -94,13 +94,31 @@ h2 em {
 
 section{
   padding-block: 144px;
+
+  @media(max-width: 1440px){
+    margin-inline: 44px;
+  }
+  @media(max-width: 768px){
+    padding-block: 88px;
+  }
+
+  @media(max-width: 525px){
+    margin-inline: 24px;
+  }
 }
 
 .pre-title{
-    font-size: 9px;
-    font-weight: 600;
-    line-height: 13.5px;
-    letter-spacing: 2.7px;
-    color: var(--color-accent);
-    text-transform: uppercase;
+  font-size: 9px;
+  font-weight: 600;
+  line-height: 13.5px;
+  letter-spacing: 2.7px;
+  color: var(--color-accent);
+  text-transform: uppercase;
+}
+
+p{
+  font-size: 14px;
+  line-height: 25.9px;
+  color: var(--color-text-secondary);
+  max-width: 430px;
 }

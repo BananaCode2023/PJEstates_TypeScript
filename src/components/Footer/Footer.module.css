@@ -108,7 +108,11 @@ footer{
         height: 48px;
         width: 43px;
         cursor: pointer;
-        transition: 0.2s;        
+        transition: 0.2s;      
+        
+        p{
+            color: var(--color-accent-light)
+        }
     }
 
     .logoText{
@@ -139,6 +143,10 @@ footer{
         .icon{
             background-color: var(--color-accent-light);
             color: var(--color-primary);
+
+            p{
+                color: var(--color-primary-dark)
+            }
         }
     }
 }
