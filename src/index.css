@@ -56,12 +56,16 @@ h3 {
 }
 
 h1{
-  font-size: 78px;
+  font-size: 4.875rem;
   line-height: 74.9px;
   letter-spacing: -2.73px;
   font-weight: 400;
   margin-block: 0;
   color: var(--color-primary);
+
+  @media(max-width: 990px){
+    font-size: clamp(3.3rem, 10vw, 4.875rem);
+  }
 }
 
 h2{

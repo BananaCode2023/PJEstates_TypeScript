@@ -25,7 +25,5 @@
         background-color: var(--color-accent);
     }
     
-    @media(max-width: 525px){
-        width: calc(100% - 32px);
-    }
+    
 }

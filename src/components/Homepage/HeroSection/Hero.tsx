@@ -2,15 +2,40 @@ import { DarkBtn } from "../../Buttons/DarkBtn"
 import { RiArrowRightLine } from "react-icons/ri";
 import styles from './Hero.module.css'
 import type { Property } from "../../../modules/propertyType";
+import { useEffect, useState } from "react";
 
 function Hero ({propertiesData}:{propertiesData: Property[]}) {
     
-    //these are just to pick a random property to show for hero
-    const getRandomNumber = (): number => {
-        return Math.floor(Math.random() * 30) + 1;
-    }
+    //these is just for the hero slideShow
+    const [randomNumber, setRandomNumber] = useState(0)
+    const [isVisible, setIsVisible] = useState(true)
 
-    const random:number = getRandomNumber();
+    useEffect(() => {
+        if(propertiesData.length === 0) return
+
+        let timeoutId: ReturnType<typeof setTimeout>
+
+        const interval = setInterval (() => {
+            setIsVisible(false)
+
+            timeoutId = setTimeout(() => {
+                const getRandomNumber = (): number => {
+                    return Math.floor(Math.random() * propertiesData.length);
+                }
+
+                setRandomNumber(getRandomNumber())
+
+                setIsVisible(true);
+            }, 500)
+
+        }, 6000)
+
+        return () => {
+            clearInterval(interval)
+            clearTimeout(timeoutId)
+        }
+        
+    }, [propertiesData.length])
 
     
 // className={styles.}
@@ -19,9 +44,10 @@ function Hero ({propertiesData}:{propertiesData: Property[]}) {
             <div className={styles.heroContainer}>
                 <div className={`${styles.heroTextContainer} ${styles.heroCol}`}>
                     <div className={styles.heroText}>
-                        <small className='pre-title'>Sacramento, California</small>
+                        <small className={`pre-title ${styles.preTitle}`}>Sacramento, California</small>
                         <h1>Find your place</h1>
                         <p>Thoughtfully selected homes, local expertise, and a better way to explore the city we love.</p>
+                        
                         <DarkBtn 
                             path={`/properties`} 
                             linkText={'Explore Properties'} 
@@ -31,8 +57,12 @@ function Hero ({propertiesData}:{propertiesData: Property[]}) {
                 </div>
 
                 <div 
-                    className={`${styles.heroImg} ${styles.heroCol}`} 
-                    style={{backgroundImage: `url('${propertiesData[random].images![0]}')`}}
+                    className={`
+                        ${styles.heroImg}
+                        ${styles.heroCol}
+                        ${isVisible ? styles.fadeIn : styles.fadeOut}    
+                    `} 
+                    style={{backgroundImage: `url('${propertiesData[randomNumber].images![0]}')`}}
                 >
                     <div className={styles.imgTextContainer}>
                         <div className={styles.marketNote}>
