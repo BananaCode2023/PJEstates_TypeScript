@@ -134,6 +134,10 @@
             background-color: var(--color-surface);
             color: var(--color-primary);
             margin-top: 16px;
+
+            &:hover{
+                color: white;
+            }
         }
     }
 
