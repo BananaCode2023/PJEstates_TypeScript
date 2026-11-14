@@ -10,7 +10,7 @@ import type { Property } from "./modules/propertyType";
 function App () {
 
     
-  const [propertiesData, setPropertiesData] = useState<Property[]>(properties)
+  const [propertiesData, _setPropertiesData] = useState<Property[]>(properties)
 
   return (
       <>
