@@ -3,6 +3,20 @@
     width: 329.5px;
     min-width: 329.5px;
     box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: 0.5s;
+    user-select: none;
+    -webkit-user-select: none;
+
+
+    &:hover{
+        transform: translateY(-8px);
+
+        .image{
+            transform: scale(1.05);
+            object-position: bottom center;
+        }
+    }
 
     .propertyHeader{
         height: 240px;
@@ -22,6 +36,7 @@
         object-position: center;
         position: relative;
         z-index: 0;
+        transition: 1s;
     }
     .tag{
         position: absolute;

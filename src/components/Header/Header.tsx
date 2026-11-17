@@ -3,18 +3,42 @@ import styles from './Header.module.css'
 import { FiSearch } from "react-icons/fi";
 import { MdLocalPhone } from "react-icons/md";
 import { DarkBtn } from '../Buttons/DarkBtn';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IoMenu } from "react-icons/io5";
 import { HeaderModal } from './HeaderModal';
 import { IoCloseSharp } from "react-icons/io5";
 
 function Header () {
 
+    const [showHeader, setShowHeader] = useState(true);
     const [isHeaderModalOpen, setIsHeaderModalOpen] = useState(false)
+
+    useEffect(() => {
+        let lastScrollY = window.scrollY
+
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY
+
+            if(currentScrollY <= 0) {
+                setShowHeader(true)
+            } else if (currentScrollY < lastScrollY) {
+                setShowHeader(true)
+            } else{
+                setShowHeader(false)
+            }
+
+            lastScrollY = currentScrollY
+        }
+        window.addEventListener("scroll", handleScroll);
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        }
+    }, [])
 
     return(
         <>
-            <header>
+            <header className={showHeader ? styles.visible : styles.hidden}>
                 <div className={styles.headerContainer}>
                     <NavLink to='/' className={styles.logo}>
                         <div className={styles.icon}>
