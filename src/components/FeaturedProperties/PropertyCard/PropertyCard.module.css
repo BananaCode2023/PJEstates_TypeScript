@@ -1,17 +1,17 @@
 .propertyCard{
     background-color: white;
-    width: 33%;
-    min-width: 300px;
-    max-width: 360px;
+    width: 329.5px;
+    min-width: 329.5px;
     box-shadow: 0 0 8px rgba(0,0,0,0.1);
 
     .propertyHeader{
         height: 240px;
         width: 100%;
-        background-color: red;
+        background-color: var(--color-primary);
         position: relative;
         overflow: hidden;
     }
+
 }
 
 .propertyHeader{
@@ -70,6 +70,13 @@
         .footerDetail{
             font-size: 9px;
             color: var(--color-text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            svg{
+                color: var(--color-text-secondary);
+                font-size: 16px;
+            }
         }
     }
 }

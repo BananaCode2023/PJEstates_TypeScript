@@ -5,6 +5,7 @@
 
     @media(max-width: 1440px){
         margin-inline: 0px;
+        padding-inline: 0;
     }
 
     @media(max-width: 768px){

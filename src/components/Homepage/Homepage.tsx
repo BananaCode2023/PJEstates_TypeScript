@@ -12,7 +12,7 @@ function Homepage ({propertiesData}:{propertiesData: Property[]}) {
 
             <Hero propertiesData={propertiesData}/>
             <About/>
-            <FeaturedProperties/>
+            <FeaturedProperties propertiesData={propertiesData}/>
         </>
     )
 }

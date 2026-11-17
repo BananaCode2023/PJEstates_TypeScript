@@ -96,14 +96,14 @@ section{
   padding-block: 144px;
 
   @media(max-width: 1440px){
-    margin-inline: 44px;
+    padding-inline: 44px;
   }
   @media(max-width: 768px){
     padding-block: 88px;
   }
 
   @media(max-width: 525px){
-    margin-inline: 24px;
+    padding-inline: 24px;
   }
 }
 
