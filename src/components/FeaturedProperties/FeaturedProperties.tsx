@@ -1,6 +1,6 @@
 import styles from './FeaturedProperties.module.css'
 import { MdArrowForwardIos } from "react-icons/md";
-import { PropertyCard } from './PropertyCard/PropertyCard';
+import { PropertyCard } from '../PropertyCard/PropertyCard';
 import type { Property } from '../../modules/propertyType';
 import { DarkBtn } from '../Buttons/DarkBtn';
 import { RiArrowRightLine } from "react-icons/ri";

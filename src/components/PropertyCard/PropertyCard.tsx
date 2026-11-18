@@ -3,7 +3,7 @@ import { TbBed } from "react-icons/tb";
 import { TbBath } from "react-icons/tb";
 import { TbRulerMeasure2 } from "react-icons/tb";
 import { TbCalendarTime } from "react-icons/tb";
-import type { Property } from '../../../modules/propertyType';
+import type { Property } from '../../modules/propertyType';
 
 export function PropertyCard ({property}:{property:Property}) {
     return(

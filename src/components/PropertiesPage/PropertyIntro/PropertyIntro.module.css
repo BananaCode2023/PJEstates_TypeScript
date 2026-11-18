@@ -1,0 +1,91 @@
+#propertyIntro{
+    background-color: var(--color-primary-dark);
+}
+
+.propertyIntroTextContainer{
+    width: 100%;
+    max-width: 1320px;
+    margin-inline: auto;
+    margin-block: auto;
+    height: 100%;
+    display: block;
+
+    
+    
+    @media(max-width: 525px){
+        margin-inline: 24px;
+    }
+
+    &:after{
+        content: 'PJ';
+        display: block;
+        font-size: 344px;
+        font-family: "Instrument Serif", serif;
+        color: var(--color-white-subtle);
+        position: absolute;
+        top: -64px;
+        right: 64px;
+    }
+}
+
+.propertyIntroText{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    h1{
+        max-width: 430px;
+        margin-block: 32px;
+        color: var(--white);
+    }
+    p{
+        font-size: 14px;
+        line-height: 25.9px;
+        color: var(--color-text-on-dark);
+        max-width: 430px;
+    }
+    a{
+        margin-top: 16px;
+    }
+
+    small{
+        color: var(--color-accent-light);
+    }
+
+    @media(max-width: 990px){
+        width: 53%;
+
+
+        .preTitle{
+            color: var(--color-accent-light);
+        }
+        h1, p{
+            color: white;
+        }
+        
+        a{
+            background-color: var(--color-surface);
+            color: var(--color-primary);
+            margin-top: 16px;
+
+            &:hover{
+                color: white;
+            }
+        }
+    }
+
+    @media(max-width: 525px){
+        width: 52%;
+        margin-inline: 24px;
+
+        h1,p,a{
+            max-width: 300px;
+        }
+    }
+
+    @media(max-width: 500px){
+        width: 75%;
+    }
+
+}

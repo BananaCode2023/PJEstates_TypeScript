@@ -38,7 +38,7 @@ function Header () {
 
     return(
         <>
-            <header className={showHeader ? styles.visible : styles.hidden}>
+            <header className={isHeaderModalOpen ? styles.visible : showHeader ? styles.visible : styles.hidden}>
                 <div className={styles.headerContainer}>
                     <NavLink to='/' className={styles.logo}>
                         <div className={styles.icon}>
@@ -70,7 +70,8 @@ function Header () {
                 </div>
 
             </header>
-            {isHeaderModalOpen ? <HeaderModal/> : ''}
+            <HeaderModal isHeaderModalOpen={isHeaderModalOpen} showHeader={showHeader}/>
+            {/* {isHeaderModalOpen ? <HeaderModal/> : ''} */}
         </>
     )
 }
