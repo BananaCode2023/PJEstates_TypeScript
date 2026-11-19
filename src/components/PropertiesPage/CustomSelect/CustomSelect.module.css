@@ -1,0 +1,78 @@
+.customSelect {
+    position: relative;
+    width: 220px;
+}
+
+.selectButton {
+    font-family: Manrope;
+    width: 100%;
+    padding: 16px 32px 6px 32px;
+    border: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    font-size: 11px;
+    color: var(--color-primary);
+    background-color: var(--white);
+    transition: 0.3s;
+
+    &:hover{
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    }
+}
+
+.arrow {
+    font-size: 14px;
+    transition: transform 0.2s ease;
+}
+
+.rotate {
+    transform: rotate(180deg);
+}
+
+.dropdown {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    box-shadow: 0 0px 8px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    transition: 0.2s ease-out;
+    background-color: var(--white);
+    transform: translateY(-8px);
+}
+
+.option {
+    width: 100%;
+    padding: 6px 32px 6px 32px;
+    background-color: var(--white);
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    font-size: 10px;
+    color: var(--color-primary);
+    transition: 0.1s ease-in;
+    font-family: Manrope;
+    box-shadow: 0 0px 2px rgba(0, 0, 0, 0.1);
+
+    &:hover{
+        background-color: var(--color-primary);
+        color: var(--white);
+    }
+}
+
+.active {
+    background-color: var(--color-accent);
+    color: var(--white);
+    font-weight: 600;
+}
+
+.label{
+    font-size: 8px;
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding-left: 24px;
+}

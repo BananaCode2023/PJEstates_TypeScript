@@ -5,6 +5,7 @@ import Properties from "./components/PropertiesPage/Properties";
 import Homepage from "./components/Homepage/Homepage";
 import properties from './data/properties.json'
 import type { Property } from "./modules/propertyType";
+import ScrollToTop from "./modules/ScrollToTop";
 
 function App () {
 
@@ -14,6 +15,7 @@ function App () {
   return (
       <>
           <BrowserRouter>
+              <ScrollToTop />
               <Header/>
                   <Routes>
                       <Route 
