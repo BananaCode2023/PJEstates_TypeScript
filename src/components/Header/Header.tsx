@@ -70,7 +70,7 @@ function Header () {
                 </div>
 
             </header>
-            <HeaderModal isHeaderModalOpen={isHeaderModalOpen} showHeader={showHeader}/>
+            <HeaderModal isHeaderModalOpen={isHeaderModalOpen}/>
             {/* {isHeaderModalOpen ? <HeaderModal/> : ''} */}
         </>
     )
