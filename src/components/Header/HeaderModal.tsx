@@ -5,13 +5,11 @@ import { MdLocalPhone } from "react-icons/md";
 
 export function HeaderModal (
     {
-        isHeaderModalOpen,
-        showHeader
+        isHeaderModalOpen
     }
     :
     {
         isHeaderModalOpen:boolean;
-        showHeader: boolean;
     }
     ) {
     return(

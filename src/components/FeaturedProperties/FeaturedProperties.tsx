@@ -7,7 +7,7 @@ import { RiArrowRightLine } from "react-icons/ri";
 import { useState } from 'react';
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
+import { Navigation } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -15,21 +15,8 @@ import "swiper/css/pagination";
 
 function FeaturedProperties ({propertiesData}:{propertiesData: Property[]}) {
 
-    const [currentIndex, setCurrentIndex] = useState(0)
     const [isBeginning, setIsBeginning] = useState(true)
-const [isEnd, setIsEnd] = useState(false)
-
-    const nextSlide = () => {
-        setCurrentIndex((prev) => {
-            return Math.min(prev + 1, propertiesData.length - 1)
-        })
-    }
-
-    const prevSlide = () => {
-        setCurrentIndex((prev) => {
-            return Math.max(prev - 1, 0)
-        })
-    }
+    const [isEnd, setIsEnd] = useState(false)
 
     return(
         <>
@@ -58,13 +45,7 @@ const [isEnd, setIsEnd] = useState(false)
                     </div>
                 </div>
                 
-                <div 
-                    className={styles.featuredPropertiesGrid}
-                    style={{
-                        transform: `translateX(-${currentIndex * 354}px)`,
-                        transition: '0.4s ease'
-                    }}
-                >
+                <div className={styles.featuredPropertiesGrid}>
                     <Swiper
                         modules={[Navigation]}
                         spaceBetween={24}
