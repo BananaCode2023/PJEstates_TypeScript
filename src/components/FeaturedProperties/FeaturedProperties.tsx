@@ -6,9 +6,18 @@ import { DarkBtn } from '../Buttons/DarkBtn';
 import { RiArrowRightLine } from "react-icons/ri";
 import { useState } from 'react';
 
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
+import type { Swiper as SwiperType } from "swiper";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
 function FeaturedProperties ({propertiesData}:{propertiesData: Property[]}) {
 
     const [currentIndex, setCurrentIndex] = useState(0)
+    const [isBeginning, setIsBeginning] = useState(true)
+const [isEnd, setIsEnd] = useState(false)
 
     const nextSlide = () => {
         setCurrentIndex((prev) => {
@@ -32,18 +41,20 @@ function FeaturedProperties ({propertiesData}:{propertiesData: Property[]}) {
                     </div>
 
                     <div className={styles.sliders}>
-                        <div 
+                        <button 
                             className={`${styles.slider} ${styles.sliderLeft}`} 
-                            onClick={currentIndex === 0 ? undefined : prevSlide}
+                            id="propertyPrevSlider"
+                            disabled={isBeginning}
                         >
                             <MdArrowForwardIos/>
-                        </div>
-                        <div 
+                        </button>
+                        <button 
                             className={`${styles.slider} ${styles.sliderRight}`}
-                            onClick={currentIndex === propertiesData.length - 1 ? undefined : nextSlide}
+                            id="propertyNextSlider"
+                            disabled={isEnd}
                         >
                             <MdArrowForwardIos/>
-                        </div>
+                        </button>
                     </div>
                 </div>
                 
@@ -54,14 +65,46 @@ function FeaturedProperties ({propertiesData}:{propertiesData: Property[]}) {
                         transition: '0.4s ease'
                     }}
                 >
-                    {propertiesData.map((property) => {
-                        return (
-                            <PropertyCard 
-                            key={property.id}
-                            property={property}
-                            />
-                        )
-                    })}
+                    <Swiper
+                        modules={[Navigation]}
+                        spaceBetween={24}
+                        slidesPerView={4}
+                        navigation={{
+                            prevEl: `#propertyPrevSlider`,
+                            nextEl: `#propertyNextSlider`,
+                        }}
+                        onSwiper={(swiper: SwiperType) => {
+                            setIsBeginning(swiper.isBeginning)
+                            setIsEnd(swiper.isEnd)
+                        }}
+                        onSlideChange={(swiper: SwiperType) => {
+                            setIsBeginning(swiper.isBeginning)
+                            setIsEnd(swiper.isEnd)
+                        }}
+                        
+                        breakpoints={{
+                            375: {
+                                slidesPerView: 1,
+                            },
+                            680: {
+                                slidesPerView: 2,
+                            },
+                            1024: {
+                                slidesPerView: 3,
+                            },
+                            1440: {
+                                slidesPerView: 4,
+                            },
+                        }}
+                    >
+                        {propertiesData.slice(0, 10).map((property) => {
+                            return (
+                                <SwiperSlide key={property.id}>
+                                    <PropertyCard property={property}/>
+                                </SwiperSlide>
+                            )
+                        })}
+                    </Swiper>
                 </div>
 
             
