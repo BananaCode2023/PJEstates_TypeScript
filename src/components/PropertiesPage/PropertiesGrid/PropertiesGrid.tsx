@@ -11,14 +11,14 @@ function PropertiesGrid ({propertiesData}:{propertiesData: Property[]}) {
     };
 
     return (
-        <section>
-            <div>
-                <div className={styles.filterContainer}>
+        <section id={styles.properties}>
+            <div className={styles.filterContainer}>
+                <div className={styles.filterTop}>
                     <div className={styles.searchColumn}>
                         <span className={styles.label}>Search</span>
                         <div className={styles.searchInput}>
                             <FiSearch />
-                            <input type="text" placeholder='Search by neighborhood or address'/>
+                            <input type="text" placeholder='Neighborhood or address'/>
                         </div>
                     </div>
                     <div className={styles.filtersColumn}>
@@ -57,10 +57,10 @@ function PropertiesGrid ({propertiesData}:{propertiesData: Property[]}) {
                         
                     </div>
                 </div>
-                <div>
-                    <button>Clear all filters</button>
-                    <div>
-                        <span>Sort by</span>
+                <div className={styles.filterBottom}>
+                    <button className={styles.clearBtn}>Clear all filters</button>
+                    <div className={styles.sortByContainer}>
+                        <p>Sort by</p>
                         <CustomSelect
                             options={["Newest", "Oldest", "Price: Low to high", "Price: High to low"]}
                             placeholder="Newest"
@@ -68,8 +68,15 @@ function PropertiesGrid ({propertiesData}:{propertiesData: Property[]}) {
                         />
                     </div>
                 </div>
-                <h2>{propertiesData.length} properties</h2>
+
+                <div className={styles.resultsHead}>
+                    <h2>{propertiesData.length} properties</h2>
+                    <p>Showing homes accross Sacramento</p>
+                </div>
+
             </div>
+
+
             <div className={styles.propertyGridContainer}>
                     {propertiesData.map((property) => {
                         return (
