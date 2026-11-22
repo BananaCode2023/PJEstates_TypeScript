@@ -8,20 +8,21 @@ interface CustomSelectProps {
     placeholder?: string;
     onChange?: (value: string) => void;
     label?: string;
+    value: string;
 }
 
 function CustomSelect({
     options,
     placeholder = "Select an option",
     onChange,
-    label
+    label,
+    value
 }: CustomSelectProps) {
 
     const [isOpen, setIsOpen] = useState(false);
-    const [selected, setSelected] = useState("");
+    // const [selected, setSelected] = useState("");
 
     const handleSelect = (option: string) => {
-        setSelected(option);
         setIsOpen(false);
         onChange?.(option);
     };
@@ -34,7 +35,7 @@ function CustomSelect({
                 className={styles.selectButton}
                 onClick={() => setIsOpen(!isOpen)}
             >
-                {selected || placeholder}
+                {value || placeholder}
 
                 <span className={`${styles.arrow} ${isOpen ? styles.rotate : ""}`}>
                     <IoIosArrowDown />
@@ -51,7 +52,7 @@ function CustomSelect({
                             type="button"
                             key={index}
                             className={`${styles.option} ${
-                                selected === option ? styles.active : ""
+                                value === option ? styles.active : ""
                             }`}
                             onClick={() => handleSelect(option)}
                         >

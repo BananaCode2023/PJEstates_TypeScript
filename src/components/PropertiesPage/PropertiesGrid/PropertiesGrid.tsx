@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import type { Property } from '../../../modules/propertyType'
 import { PropertyCard } from '../../PropertyCard/PropertyCard'
 import CustomSelect from '../CustomSelect/CustomSelect'
@@ -9,6 +10,22 @@ function PropertiesGrid ({propertiesData}:{propertiesData: Property[]}) {
     const handleChange = (value: string) => {
         console.log("Selected:", value);
     };
+
+    interface Filters {
+        price: string;
+        type: string;
+        beds: string;
+        status: string;
+        sort: string;
+    }
+
+    const [propertyFilter, setPropertyFilter] = useState<Filters>({
+        price: 'Any price',
+        type: 'Any type',
+        beds: 'Any beds',
+        status: 'Any status',
+        sort: 'Newest'
+    })
 
     return (
         <section id={styles.properties}>
@@ -28,14 +45,16 @@ function PropertiesGrid ({propertiesData}:{propertiesData: Property[]}) {
                                 placeholder="Any price"
                                 onChange={handleChange}
                                 label='Price range'
+                                value={propertyFilter.price}
                             />
                         </div>
                         <div className={styles.filter}>
                             <CustomSelect
-                                options={["All types", "Single-family", "Multi-family", "Condos", "Apartments"]}
+                                options={["Any type", "Single-family", "Multi-family", "Condos", "Apartments"]}
                                 placeholder="All types"
                                 onChange={handleChange}
                                 label='Property type'
+                                value={propertyFilter.type}
                             />
                         </div>
                         <div className={styles.filter}>
@@ -44,6 +63,7 @@ function PropertiesGrid ({propertiesData}:{propertiesData: Property[]}) {
                                 placeholder="Any beds"
                                 onChange={handleChange}
                                 label='Bedrooms'
+                                value={propertyFilter.beds}
                             />
                         </div>
                         <div className={styles.filter}>
@@ -52,6 +72,7 @@ function PropertiesGrid ({propertiesData}:{propertiesData: Property[]}) {
                                 placeholder="Any status"
                                 onChange={handleChange}
                                 label='Status'
+                                value={propertyFilter.status}
                             />
                         </div>
                         
@@ -65,6 +86,7 @@ function PropertiesGrid ({propertiesData}:{propertiesData: Property[]}) {
                             options={["Newest", "Oldest", "Price: Low to high", "Price: High to low"]}
                             placeholder="Newest"
                             onChange={handleChange}
+                            value={propertyFilter.sort}
                         />
                     </div>
                 </div>
