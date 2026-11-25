@@ -4,21 +4,16 @@ import { PropertyCard } from '../../PropertyCard/PropertyCard'
 import CustomSelect from '../CustomSelect/CustomSelect'
 import styles from './PropertiesGrid.module.css'
 import { FiSearch } from "react-icons/fi";
+import {
+    PRICE_OPTIONS, TYPE_OPTIONS, BEDS_OPTIONS, STATUS_OPTIONS, SORT_OPTIONS,
+    type Price, type PropertyType, type Beds, type Status, type Sort, type Filters
+} from '../../../modules/filterOptions'
+
+const isOneOf = <T extends readonly string[]>(list: T, value: string): value is T[number] => (list as readonly string[]).includes(value);
 
 function PropertiesGrid ({propertiesData}:{propertiesData: Property[]}) {
 
-    const handleFilterChange = (key: keyof Filters, value: string) => {
-        setPropertyFilters(prev => ({...prev, [key]: value }))
-    };
-
-
-    interface Filters {
-        price: "Any price" | "Under $500k" | "$500k - $750k" | "$750k - $1M" | "$1M+";
-        type: "Any type" | "Single-family" | "Multi-family" | "Condos" | "Apartments";
-        beds: "Any beds" | "2" | "3" | "4" | "5+";
-        status: "Any status" | "For sale" | "For rent" | "Sold";
-        sort: "Newest" | "Oldest" | "Price: Low to high" | "Price: High to low";
-    }
+    const [searchTerm, setSearchTerm] = useState('')
 
     const [propertyFilters, setPropertyFilters] = useState<Filters>({
         price: 'Any price',
@@ -28,8 +23,15 @@ function PropertiesGrid ({propertiesData}:{propertiesData: Property[]}) {
         sort: 'Newest'
     })
 
+    const matchesSearch = (property: Property, term: string):boolean => {
+        const query = term.trim().toLowerCase()
+        if(query === '') {
+            return true
+        }
+        return property.address.toLowerCase().includes(query)
+    }
 
-    const matchesPrice = (property: Property, selected: string):boolean => {
+    const matchesPrice = (property: Property, selected: Price):boolean => {
         if(selected === 'Any price'){
             return true
         } else if(selected === 'Under $500k'){
@@ -44,7 +46,7 @@ function PropertiesGrid ({propertiesData}:{propertiesData: Property[]}) {
         return true
     }
 
-    const matchesType = (property: Property, selected: string):boolean => {
+    const matchesType = (property: Property, selected: PropertyType):boolean => {
         if(selected === 'Any type'){
             return true
         } else if(selected === 'Single-family'){
@@ -59,7 +61,7 @@ function PropertiesGrid ({propertiesData}:{propertiesData: Property[]}) {
         return true
     }
 
-    const matchesBeds = (property: Property, selected: string):boolean => {
+    const matchesBeds = (property: Property, selected: Beds):boolean => {
         if(selected === 'Any beds'){
             return true
         } else if(selected === '2'){
@@ -74,20 +76,20 @@ function PropertiesGrid ({propertiesData}:{propertiesData: Property[]}) {
         return true
     }
 
-    const matchesStatus = (property: Property, selected: string):boolean => {
+    const matchesStatus = (property: Property, selected: Status):boolean => {
         if(selected === 'Any status'){
             return true
         } else if(selected === 'For sale'){
-            return property.type === 'For Sale'
+            return property.status === 'For Sale'
         } else if(selected  === 'For rent'){
-            return property.type === 'For Rent'
+            return property.status === 'For Rent'
         } else if(selected === 'Sold'){
-            return property.type === 'Sold'
+            return property.status === 'Sold'
         }
         return true
     }
 
-    const matchesSort = (property: Property[], selected: string): Property[] => {
+    const matchesSort = (property: Property[], selected: Sort): Property[] => {
         if(selected === 'Newest'){
             return [...property].sort((a,b) => b.yearBuilt - a.yearBuilt)
         } else if(selected === 'Oldest'){
@@ -100,8 +102,16 @@ function PropertiesGrid ({propertiesData}:{propertiesData: Property[]}) {
         return property
     }
 
-    // console.log(matchesSort(propertiesData, 'Price: High to low'))
-    // console.log(propertiesData.filter(property => matchesPrice(property, '$1M+')))
+    const filtered = matchesSort(
+        propertiesData.filter(property => 
+            matchesSearch(property, searchTerm) &&
+            matchesPrice(property, propertyFilters.price) &&
+            matchesType(property, propertyFilters.type) &&
+            matchesBeds(property, propertyFilters.beds) &&
+            matchesStatus(property, propertyFilters.status)
+        ),
+        propertyFilters.sort
+    )
 
     return (
         <section id={styles.properties}>
@@ -111,42 +121,65 @@ function PropertiesGrid ({propertiesData}:{propertiesData: Property[]}) {
                         <span className={styles.label}>Search</span>
                         <div className={styles.searchInput}>
                             <FiSearch />
-                            <input type="text" placeholder='Neighborhood or address'/>
+                            <input 
+                                type="text" 
+                                placeholder='Neighborhood or address'
+                                value={searchTerm}
+                                onChange={(e) => {
+                                    setSearchTerm(e.target.value)
+                                }}
+                            />
                         </div>
                     </div>
                     <div className={styles.filtersColumn}>
                         <div className={styles.filter}>
                             <CustomSelect
-                                options={["Any price", "Under $500k", "$500k - $750k", "$750k - $1M", "$1M+"]}
+                                options={[...PRICE_OPTIONS]}
                                 placeholder="Any price"
-                                onChange={(value) => handleFilterChange("price", value)}
+                                onChange={(value) => {
+                                    if(isOneOf(PRICE_OPTIONS, value)) {
+                                        setPropertyFilters(prev => ({...prev, price: value}));
+                                    }
+                                }}
                                 label='Price range'
                                 value={propertyFilters.price}
                             />
                         </div>
                         <div className={styles.filter}>
                             <CustomSelect
-                                options={["Any type", "Single-family", "Multi-family", "Condos", "Apartments"]}
+                                options={[...TYPE_OPTIONS]}
                                 placeholder="All types"
-                                onChange={(value) => handleFilterChange("type", value)}
+                                onChange={(value) => {
+                                    if(isOneOf(TYPE_OPTIONS, value)){
+                                        setPropertyFilters(prev => ({...prev, type: value }))
+                                    }
+                                }}
                                 label='Property type'
                                 value={propertyFilters.type}
                             />
                         </div>
                         <div className={styles.filter}>
                             <CustomSelect
-                                options={["Any beds", "2", "3", "4", "5+"]}
+                                options={[...BEDS_OPTIONS]}
                                 placeholder="Any beds"
-                                onChange={(value) => handleFilterChange("beds", value)}
+                                onChange={(value) => {
+                                    if(isOneOf(BEDS_OPTIONS, value)){
+                                        setPropertyFilters(prev => ({...prev, beds: value }))
+                                    }
+                                }}
                                 label='Bedrooms'
                                 value={propertyFilters.beds}
                             />
                         </div>
                         <div className={styles.filter}>
                             <CustomSelect
-                                options={["Any status", "For sale", "For rent", "Sold"]}
+                                options={[...STATUS_OPTIONS]}
                                 placeholder="Any status"
-                                onChange={(value) => handleFilterChange("status", value)}
+                                onChange={(value) => {
+                                    if(isOneOf(STATUS_OPTIONS, value)){
+                                        setPropertyFilters(prev => ({...prev, status: value }))
+                                    }
+                                }}
                                 label='Status'
                                 value={propertyFilters.status}
                             />
@@ -155,20 +188,37 @@ function PropertiesGrid ({propertiesData}:{propertiesData: Property[]}) {
                     </div>
                 </div>
                 <div className={styles.filterBottom}>
-                    <button className={styles.clearBtn}>Clear all filters</button>
+                    <button 
+                        className={styles.clearBtn}
+                        onClick={() => {
+                            setPropertyFilters({
+                                price: 'Any price',
+                                type: 'Any type',
+                                beds: 'Any beds',
+                                status: 'Any status',
+                                sort: 'Newest'
+                            })
+                        }}
+                    >
+                        Clear all filters
+                    </button>
                     <div className={styles.sortByContainer}>
                         <p>Sort by</p>
                         <CustomSelect
-                            options={["Newest", "Oldest", "Price: Low to high", "Price: High to low"]}
+                            options={[...SORT_OPTIONS]}
                             placeholder="Newest"
-                            onChange={(value) => handleFilterChange("sort", value)}
+                            onChange={(value) => {
+                                    if(isOneOf(SORT_OPTIONS, value)){
+                                        setPropertyFilters(prev => ({...prev, sort: value }))
+                                    }
+                                }}
                             value={propertyFilters.sort}
                         />
                     </div>
                 </div>
 
                 <div className={styles.resultsHead}>
-                    <h2>{propertiesData.length} properties</h2>
+                    <h2>{filtered.length} {filtered.length > 1 ? 'properties' : 'property'}</h2>
                     <p>Showing homes accross Sacramento</p>
                 </div>
 
@@ -176,7 +226,7 @@ function PropertiesGrid ({propertiesData}:{propertiesData: Property[]}) {
 
 
             <div className={styles.propertyGridContainer}>
-                    {propertiesData.map((property) => {
+                    {filtered.map((property) => {
                         return (
                             <PropertyCard 
                             key={property.id}
