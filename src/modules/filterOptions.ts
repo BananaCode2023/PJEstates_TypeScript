@@ -17,3 +17,11 @@ export interface Filters {
     status: Status;
     sort: Sort;
 }
+
+export const DEFAULT_FILTERS: Filters = {
+    price: 'Any price',
+    type: 'Any type',
+    beds: 'Any beds',
+    status: 'Any status',
+    sort: 'Newest',
+}

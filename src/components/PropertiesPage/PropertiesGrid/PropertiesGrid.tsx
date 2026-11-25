@@ -6,112 +6,20 @@ import styles from './PropertiesGrid.module.css'
 import { FiSearch } from "react-icons/fi";
 import {
     PRICE_OPTIONS, TYPE_OPTIONS, BEDS_OPTIONS, STATUS_OPTIONS, SORT_OPTIONS,
-    type Price, type PropertyType, type Beds, type Status, type Sort, type Filters
+    DEFAULT_FILTERS, type Filters
 } from '../../../modules/filterOptions'
+import { applyFilters } from '../../../utils/propertyFilters'
+import { isOneOf } from '../../../utils/typeGuards'
 
-const isOneOf = <T extends readonly string[]>(list: T, value: string): value is T[number] => (list as readonly string[]).includes(value);
+
 
 function PropertiesGrid ({propertiesData}:{propertiesData: Property[]}) {
 
     const [searchTerm, setSearchTerm] = useState('')
 
-    const [propertyFilters, setPropertyFilters] = useState<Filters>({
-        price: 'Any price',
-        type: 'Any type',
-        beds: 'Any beds',
-        status: 'Any status',
-        sort: 'Newest'
-    })
+    const [propertyFilters, setPropertyFilters] = useState<Filters>(DEFAULT_FILTERS)
 
-    const matchesSearch = (property: Property, term: string):boolean => {
-        const query = term.trim().toLowerCase()
-        if(query === '') {
-            return true
-        }
-        return property.address.toLowerCase().includes(query)
-    }
-
-    const matchesPrice = (property: Property, selected: Price):boolean => {
-        if(selected === 'Any price'){
-            return true
-        } else if(selected === 'Under $500k'){
-            return property.price < 500000
-        } else if(selected  === '$500k - $750k'){
-            return property.price >= 500000 && property.price <= 750000
-        } else if(selected === '$750k - $1M'){
-            return property.price >= 750000 && property.price <= 1000000
-        } else if(selected === '$1M+'){
-            return property.price > 1000000
-        }
-        return true
-    }
-
-    const matchesType = (property: Property, selected: PropertyType):boolean => {
-        if(selected === 'Any type'){
-            return true
-        } else if(selected === 'Single-family'){
-            return property.type === 'Single-Family Residence'
-        } else if(selected  === 'Multi-family'){
-            return property.type === 'Multi-Family Residence'
-        } else if(selected === 'Condos'){
-            return property.type === 'Condos'
-        } else if(selected === 'Apartments'){
-            return property.type === 'Apartments'
-        }
-        return true
-    }
-
-    const matchesBeds = (property: Property, selected: Beds):boolean => {
-        if(selected === 'Any beds'){
-            return true
-        } else if(selected === '2'){
-            return property.beds === 2
-        } else if(selected  === '3'){
-            return property.beds === 3
-        } else if(selected === '4'){
-            return property.beds === 4
-        } else if(selected === '5+'){
-            return property.beds >= 5
-        }
-        return true
-    }
-
-    const matchesStatus = (property: Property, selected: Status):boolean => {
-        if(selected === 'Any status'){
-            return true
-        } else if(selected === 'For sale'){
-            return property.status === 'For Sale'
-        } else if(selected  === 'For rent'){
-            return property.status === 'For Rent'
-        } else if(selected === 'Sold'){
-            return property.status === 'Sold'
-        }
-        return true
-    }
-
-    const matchesSort = (property: Property[], selected: Sort): Property[] => {
-        if(selected === 'Newest'){
-            return [...property].sort((a,b) => b.yearBuilt - a.yearBuilt)
-        } else if(selected === 'Oldest'){
-            return [...property].sort((a,b) => a.yearBuilt - b.yearBuilt)
-        } else if(selected  === 'Price: Low to high'){
-            return [...property].sort((a,b) => a.price - b.price)
-        } else if(selected === 'Price: High to low'){
-            return [...property].sort((a,b) => b.price - a.price)
-        }
-        return property
-    }
-
-    const filtered = matchesSort(
-        propertiesData.filter(property => 
-            matchesSearch(property, searchTerm) &&
-            matchesPrice(property, propertyFilters.price) &&
-            matchesType(property, propertyFilters.type) &&
-            matchesBeds(property, propertyFilters.beds) &&
-            matchesStatus(property, propertyFilters.status)
-        ),
-        propertyFilters.sort
-    )
+    const filtered = applyFilters(propertiesData, propertyFilters, searchTerm)
 
     return (
         <section id={styles.properties}>

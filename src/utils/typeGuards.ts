@@ -1,0 +1,1 @@
+export const isOneOf = <T extends readonly string[]>(list: T, value: string): value is T[number] => (list as readonly string[]).includes(value)
