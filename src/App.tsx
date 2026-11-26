@@ -6,6 +6,7 @@ import Homepage from "./components/Homepage/Homepage";
 import properties from './data/properties.json'
 import type { Property } from "./modules/propertyType";
 import ScrollToTop from "./modules/ScrollToTop";
+import PageNotFound from "./components/404/PageNotFound";
 
 function App () {
 
@@ -21,9 +22,16 @@ function App () {
                       <Route 
                         path='/' 
                         element={<Homepage propertiesData={propertiesData}/>}
-                      >
-                      </Route>
-                      <Route path='/properties' element={<Properties propertiesData={propertiesData}/>}></Route>
+                      />
+                      
+                      <Route 
+                        path='/properties' 
+                        element={<Properties propertiesData={propertiesData}/>} 
+                      />
+                      <Route
+                        path='*'
+                        element={<PageNotFound/>}
+                      />
                   </Routes>
               <Footer/>
           </BrowserRouter>
