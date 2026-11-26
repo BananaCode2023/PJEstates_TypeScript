@@ -7,6 +7,7 @@ import properties from './data/properties.json'
 import type { Property } from "./modules/propertyType";
 import ScrollToTop from "./modules/ScrollToTop";
 import PageNotFound from "./components/404/PageNotFound";
+import PropertyDetail from "./components/PropertyDetailPage/PropertyDetail";
 
 function App () {
 
@@ -28,6 +29,12 @@ function App () {
                         path='/properties' 
                         element={<Properties propertiesData={propertiesData}/>} 
                       />
+
+                      <Route
+                        path='/propertyDetail'
+                        element={<PropertyDetail propertiesData={propertiesData}/>}
+                      />
+
                       <Route
                         path='*'
                         element={<PageNotFound/>}
