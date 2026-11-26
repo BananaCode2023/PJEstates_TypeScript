@@ -7,7 +7,7 @@ import type { Property } from '../../modules/propertyType';
 
 export function PropertyCard ({property}:{property:Property}) {
     return(
-        <div className={styles.propertyCard}>
+        <a className={styles.propertyCard}>
             <div className={styles.propertyHeader}>
                 <img 
                     className={styles.image}
@@ -28,6 +28,6 @@ export function PropertyCard ({property}:{property:Property}) {
                     <div className={styles.footerDetail}><TbCalendarTime /> {property.yearBuilt}</div>
                 </div>
             </div>
-        </div>
+        </a>
     )
 }

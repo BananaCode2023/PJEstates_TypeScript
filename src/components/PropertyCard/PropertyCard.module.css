@@ -62,6 +62,7 @@
 
 .propertyInfo{
     padding: 24px;
+    background-color: var(--white);
 
     h4{
         margin: 0;
