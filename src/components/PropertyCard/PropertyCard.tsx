@@ -4,14 +4,18 @@ import { TbBath } from "react-icons/tb";
 import { TbRulerMeasure2 } from "react-icons/tb";
 import { TbCalendarTime } from "react-icons/tb";
 import type { Property } from '../../modules/propertyType';
+import { Link } from 'react-router-dom';
 
 export function PropertyCard ({property}:{property:Property}) {
     return(
-        <a className={styles.propertyCard}>
+        <Link 
+            to={`/properties/${property.id}`}
+            className={styles.propertyCard}
+        >
             <div className={styles.propertyHeader}>
                 <img 
                     className={styles.image}
-                    src={property.images![0]} 
+                    src={`/${property.images![0]}`} 
                     alt='property_name'
                 />
                 <p className={`${styles.tag} ${styles.propertyStatus}`}>{property.status}</p>
@@ -28,6 +32,6 @@ export function PropertyCard ({property}:{property:Property}) {
                     <div className={styles.footerDetail}><TbCalendarTime /> {property.yearBuilt}</div>
                 </div>
             </div>
-        </a>
+        </Link>
     )
 }

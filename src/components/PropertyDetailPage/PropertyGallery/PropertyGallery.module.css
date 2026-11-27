@@ -1,0 +1,264 @@
+#propertyGallery {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 88px);
+    overflow: hidden;
+    background: var(--color-primary-dark);
+    padding: 0;
+}
+
+.mainSwiper {
+    width: 100%;
+    height: 100%;
+}
+
+.mainSwiper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#propertyGallery::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.65),
+        transparent 45%
+    );
+}
+
+.backButton {
+    background-color: var(--color-background);
+    color: var(--color-primary);
+    text-decoration: none;
+    height: 46px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 11px;
+    font-size: 10px;
+    line-height: 15px;
+    letter-spacing: 1.2px;
+    font-weight: 600;
+    transition: 0.2s;
+    text-transform: uppercase;
+    position: absolute;
+    top: 35px;
+    left: 8%;
+    z-index: 5;
+    padding-inline: 24px;
+    padding-block: 4px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.9;
+
+    svg{
+        font-size: 16px;
+    }
+
+    &:hover{
+        opacity: 1;
+    }
+}
+
+.thumbnailSwiper {
+    position: absolute;
+    bottom: 30px;
+    left: 8%;
+    width: 420px;
+    z-index: 5;
+    padding: 4px;
+    
+    @media(max-width: 525px){
+        bottom: 104px;
+        left: 0;
+        width: 100%;
+        div{
+            justify-content: center;
+        }
+    }
+}
+
+.thumbnailSwiper :global(.swiper-slide) {
+    width: 64px;
+    height: 48px;
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+.thumbnailSwiper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.thumbnailSwiper :global(.swiper-slide-thumb-active) {
+    opacity: 1;
+    outline: 1px solid white;
+    outline-offset: 3px;
+    
+    border: 1px solid var(--white);
+}
+
+.navigation {
+    position: absolute;
+    right: 8%;
+    bottom: 36px;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    color: white;
+    
+    @media(max-width: 525px){
+        width: 100%;
+        right: 0;
+        justify-content: center;
+    }
+}
+
+.navigation button {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: 1px solid var(--white);
+    color: var(--white);
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+    user-select: none;
+    -webkit-user-select: none;
+
+    &:first-child svg{
+        rotate: 180deg;
+    }
+
+    &:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+    &:hover{
+        background-color: var(--white);
+        color: var(--color-primary);
+    }
+}
+
+
+.clickableImage {
+    cursor: zoom-in;
+}
+
+.galleryModal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.96);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalSwiper {
+    width: 85%;
+    height: 85%;
+}
+
+.modalSwiper img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.closeModal {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    z-index: 10;
+
+    background: transparent;
+    color: white;
+    border: none;
+    font-size: 35px;
+    cursor: pointer;
+}
+
+.modalPrev,
+.modalNext {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.5);
+    color: white;
+
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+    user-select: none;
+    -webkit-user-select: none;
+
+    &:first-child svg{
+        rotate: 180deg;
+    }
+
+    &:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+    &:hover{
+        background-color: var(--white);
+        color: var(--color-primary);
+    }
+}
+
+.modalPrev {
+    left: 35px;
+    transform: translateY(-50%) rotate(180deg);
+}
+
+.modalNext {
+    right: 35px;
+}
+
+.disabled {
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.modalCounter {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+
+    color: white;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+.modalPrev:disabled,
+.modalNext:disabled {
+    opacity: 0.3;
+    pointer-events: none;
+}

@@ -6,6 +6,7 @@
     cursor: pointer;
     transition: 0.5s;
     user-select: none;
+    text-decoration: none;
     -webkit-user-select: none;
 
     &:hover{

@@ -21,22 +21,22 @@ function App () {
               <Header/>
                   <Routes>
                       <Route 
-                        path='/' 
+                        path="/" 
                         element={<Homepage propertiesData={propertiesData}/>}
                       />
                       
                       <Route 
-                        path='/properties' 
+                        path="/properties" 
                         element={<Properties propertiesData={propertiesData}/>} 
                       />
 
                       <Route
-                        path='/propertyDetail'
+                        path="/properties/:id"
                         element={<PropertyDetail propertiesData={propertiesData}/>}
                       />
 
                       <Route
-                        path='*'
+                        path="*"
                         element={<PageNotFound/>}
                       />
                   </Routes>
